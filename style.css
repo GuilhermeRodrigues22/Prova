@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(162, 227, 242);
+    background-color: rgba(127, 255, 212, 0.478);
 }
 
 input::-webkit-outer-spin-button,
@@ -9,4 +9,9 @@ input::-webkit-inner-spin-button {
 }
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.card-title{
+text-align: center;
+font-size: x-large;
 }

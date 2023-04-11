@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Conversor</a>
+            <a class="navbar-brand" href="#">Conversor de Moeda</a>
         </div>
     </nav>
 
@@ -27,7 +27,7 @@
                 </div>
                 <div class="mb-3 form-group">
                     <label for="medida1" class="form-label">De:</label>
-                    <select name="unidade1" id="medidaInput" class="form-select">
+                    <select name="unidade1" id="moedaInput" class="form-select">
                         <option value="0" disabled>Selecione a moeda</option>
                         <option value="Real">Real</option>
                         <option value="Dolar">Dolar</option>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="mb-3 form-group">
                     <label for="medida1" class="form-label">Para:</label>
-                    <select name="unidade1" id="medidaConverted" class="form-select">
+                    <select name="unidade1" id="moedaConverted" class="form-select">
                         <option value="0" disabled>Selecione a moeda</option>
                         <option value="Real">Real</option>
                         <option value="Dolar">Dolar</option>
@@ -56,30 +56,30 @@
 </div>
 
 <script>
-    function converterMedidas(valor, medidaInserida, medidaConvertida) {
-        if (medidaInserida === "Real" && medidaConvertida === "Dolar") {
+    function converterMedidas(valor, moedaInserida, moedaConvertida) {
+        if (moedaInserida === "Real" && moedaConvertida === "Dolar") {
             return valor / 5.0;
-        } else if (medidaInserida === "Real" && medidaConvertida === "Euro") {
+        } else if (moedaInserida === "Real" && moedaConvertida === "Euro") {
             return valor / 5.46;
-        } else if (medidaInserida === "Real" && medidaConvertida === "Libra") {
+        } else if (moedaInserida === "Real" && moedaConvertida === "Libra") {
             return valor / 6.22;
-        } else if (medidaInserida === "Dolar" && medidaConvertida === "Real") {
+        } else if (moedaInserida === "Dolar" && moedaConvertida === "Real") {
             return valor / 0.20;
-        } else if (medidaInserida === "Dolar" && medidaConvertida === "Euro") {
-            return valor / 0.92;
-        } else if (medidaInserida === "Dolar" && medidaConvertida === "Libra") {
-            return valor / 1.24;
-        } else if (medidaInserida === "Euro" && medidaConvertida === "Real") {
-            return valor / 5.46;
-        } else if (medidaInserida === "Euro" && medidaConvertida === "Dolar") {
+        } else if (moedaInserida === "Dolar" && moedaConvertida === "Euro") {
             return valor / 1.09;
-        } else if (medidaInserida === "Euro" && medidaConvertida === "Libra") {
+        } else if (moedaInserida === "Dolar" && moedaConvertida === "Libra") {
+            return valor / 1.24;
+        } else if (moedaInserida === "Euro" && moedaConvertida === "Real") {
+            return valor / 5.46;
+        } else if (moedaInserida === "Euro" && moedaConvertida === "Dolar") {
+            return valor / 0.92;
+        } else if (moedaInserida === "Euro" && moedaConvertida === "Libra") {
             return valor / 1.14;
-        } else if (medidaInserida === "Libra" && medidaConvertida === "Real") {
+        } else if (moedaInserida === "Libra" && moedaConvertida === "Real") {
             return valor / 0.16;
-        } else if (medidaInserida === "Libra" && medidaConvertida === "Dolar") {
+        } else if (moedaInserida === "Libra" && moedaConvertida === "Dolar") {
             return valor / 0.81;
-        } else if (medidaInserida === "Libra" && medidaConvertida === "Euro") {
+        } else if (moedaInserida === "Libra" && moedaConvertida === "Euro") {
             return valor / 0.88;
         } else {
             return valor;
@@ -87,14 +87,14 @@
     }
     const buttonConvert = document.getElementById("convert");
     const outputValor = document.getElementById("valor");
-    const medidaInputSelect = document.getElementById("medidaInput");
-    const medidaConvertedSelect = document.getElementById("medidaConverted");
+    const moedaInputSelect = document.getElementById("moedaInput");
+    const moedaConvertedSelect = document.getElementById("moedaConverted");
     const resultadoFinal = document.getElementById("result");
 
     buttonConvert.addEventListener("click", function () {
         const valor = parseFloat(outputValor.value);
-        const medidaInserida = medidaInputSelect.value;
-        const medidaConvertida = medidaConvertedSelect.value;
+        const moedaInserida = moedaInputSelect.value;
+        const moedaConvertida = moedaConvertedSelect.value;
 
         const valorConvertido = converterMedidas(valor, medidaInserida, medidaConvertida);
 
