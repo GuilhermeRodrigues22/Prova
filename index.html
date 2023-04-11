@@ -82,14 +82,14 @@
         } else if (moedaInserida === "GBP" && moedaConvertida === "EUR") {
             return valor / 0.88;
         } else {
-            return valor;
+            return valor.tofixed(2);
         }
     }
     const buttonConvert = document.getElementById("convert");
     const outputValor = document.getElementById("valor");
     const moedaInputSelect = document.getElementById("moedaInput");
     const moedaConvertedSelect = document.getElementById("moedaConverted");
-    const resultadoFinal = document.getElementById("result");
+    const resultadoFinal = document.getElementById("result").tofixed(2);
 
     buttonConvert.addEventListener("click", function () {
         const valor = parseFloat(outputValor.value);
