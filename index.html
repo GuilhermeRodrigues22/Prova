@@ -10,10 +10,15 @@
     <title>Conversão Moeda</title>
 </head>
 <body>
-    
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Conversor</a>
+        </div>
+    </nav>
+
     <div class="card col-5 container center position-absolute top-50 start-50 translate-middle">
         <div class="card-body">
-            <h5 class="card-title">Converor de Moedas</h5>
+            <h5 class="card-title">Converter moeda</h5>
             <form>
                 <div class="mb-3">
                     <label for="exampleNumber1" class="form-label">Valor</label>
@@ -21,43 +26,68 @@
                         placeholder="Informe um valor">
                 </div>
                 <div class="mb-3 form-group">
-                    <label for="conversao1" class="form-label">De:</label>
-                    <select name="moeda1" id="medidaInput" class="form-select">
-                        <option value="0" disabled>Selecione a Moeda</option>
+                    <label for="medida1" class="form-label">De:</label>
+                    <select name="unidade1" id="medidaInput" class="form-select">
+                        <option value="0" disabled>Selecione a medida</option>
                         <option value="Real">Real</option>
+                        <option value="Dolar">Dolar</option>
+                        <option value="Euro">Euro</option>
                     </select>
                 </div>
                 <div class="mb-3 form-group">
-                    <label for="conversao1" class="form-label">Para:</label>
-                    <select name="moeda1" id="moedaConverted" class="form-select">
-                        <option value="0" disabled>Selecione a moeda convertida</option>
-                        <option value="Dolar">Dólar</option>
-                        <option value="Euro">Euro</option>
-                        <option value="Libra">Libra Esterlina</option>
+                    <label for="medida1" class="form-label">Para:</label>
+                    <select name="unidade1" id="medidaConverted" class="form-select">
+                        <option value="0" disabled>Selecione a moeda</option>
+                        <option value="Real">Real</option>
+                        <option value="Quilometros">Quilômetros</option>
+                        <option value="Pes">Pés</option>
                     </select>
                 </div>
                 <div class="grid text-center">
                     <p id="result"></p>
-                    <button onclick="conversor" id="convert" style="background-color: rgb(24, 207, 240);" type="button" class="btn btn-secondary mx-auto">Converter</button>
+                    <button id="convert" style="background-color: rgb(24, 207, 240);" type="button" class="btn btn-secondary mx-auto">Converter</button>
 
                 </div>
             </form>
         </div>
+    </div>
+</div>
 
-        <script type="text/javascript">
-            var Dolar = 0;
-            var Euro = 0;
-            var Libra = 0;
-            function conversor(){
-                
-                var Real = document.getElementById('Real').value;
-                Real = parseFloat()
+<script>
+    function converterMedidas(valor, medidaInserida, medidaConvertida) {
+        if (medidaInserida === "Metros" && medidaConvertida === "Quilometros") {
+            return valor / 1000;
+        } else if (medidaInserida === "Metros" && medidaConvertida === "Pes") {
+            return valor * 3.28084;
+        } else if (medidaInserida === "Quilometros" && medidaConvertida === "Metros") {
+            return valor * 1000;
+        } else if (medidaInserida === "Quilometros" && medidaConvertida === "Pes") {
+            return valor * 1000;
+        } else if (medidaInserida === "Pes" && medidaConvertida === "Metros") {
+            return valor / 3.28084;
+        } else if (medidaInserida === "Pes" && medidaConvertida === "Quilometros") {
+            return valor / 3280.84;
+        } else {
+            return valor;
+        }
+    }
+    const buttonConvert = document.getElementById("convert");
+    const outputValor = document.getElementById("valor");
+    const medidaInputSelect = document.getElementById("medidaInput");
+    const medidaConvertedSelect = document.getElementById("medidaConverted");
+    const resultadoFinal = document.getElementById("result");
 
-            }
-            
+    buttonConvert.addEventListener("click", function () {
+        const valor = parseFloat(outputValor.value);
+        const medidaInserida = medidaInputSelect.value;
+        const medidaConvertida = medidaConvertedSelect.value;
 
-        </script>
+        const valorConvertido = converterMedidas(valor, medidaInserida, medidaConvertida);
 
-</body>
+        resultadoFinal.innerHTML = `${valor} ${medidaInserida} é equivalente a ${valorConvertido} ${medidaConvertida}`;
+
+    });
+
+</script>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
