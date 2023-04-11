@@ -28,10 +28,11 @@
                 <div class="mb-3 form-group">
                     <label for="medida1" class="form-label">De:</label>
                     <select name="unidade1" id="medidaInput" class="form-select">
-                        <option value="0" disabled>Selecione a medida</option>
+                        <option value="0" disabled>Selecione a moeda</option>
                         <option value="Real">Real</option>
                         <option value="Dolar">Dolar</option>
                         <option value="Euro">Euro</option>
+                        <option value="Libra">Libra Esterlina</option>
                     </select>
                 </div>
                 <div class="mb-3 form-group">
@@ -39,8 +40,9 @@
                     <select name="unidade1" id="medidaConverted" class="form-select">
                         <option value="0" disabled>Selecione a moeda</option>
                         <option value="Real">Real</option>
-                        <option value="Quilometros">Quilômetros</option>
-                        <option value="Pes">Pés</option>
+                        <option value="Dolar">Dolar</option>
+                        <option value="Euro">Euro</option>
+                        <option value="Libra">Libra Esterlina</option>
                     </select>
                 </div>
                 <div class="grid text-center">
@@ -55,18 +57,30 @@
 
 <script>
     function converterMedidas(valor, medidaInserida, medidaConvertida) {
-        if (medidaInserida === "Metros" && medidaConvertida === "Quilometros") {
-            return valor / 1000;
-        } else if (medidaInserida === "Metros" && medidaConvertida === "Pes") {
-            return valor * 3.28084;
-        } else if (medidaInserida === "Quilometros" && medidaConvertida === "Metros") {
-            return valor * 1000;
-        } else if (medidaInserida === "Quilometros" && medidaConvertida === "Pes") {
-            return valor * 1000;
-        } else if (medidaInserida === "Pes" && medidaConvertida === "Metros") {
-            return valor / 3.28084;
-        } else if (medidaInserida === "Pes" && medidaConvertida === "Quilometros") {
-            return valor / 3280.84;
+        if (medidaInserida === "Real" && medidaConvertida === "Dolar") {
+            return valor / 5.0;
+        } else if (medidaInserida === "Real" && medidaConvertida === "Euro") {
+            return valor / 5.46;
+        } else if (medidaInserida === "Real" && medidaConvertida === "Libra") {
+            return valor / 6.22;
+        } else if (medidaInserida === "Dolar" && medidaConvertida === "Real") {
+            return valor / 0.20;
+        } else if (medidaInserida === "Dolar" && medidaConvertida === "Euro") {
+            return valor / 0.92;
+        } else if (medidaInserida === "Dolar" && medidaConvertida === "Libra") {
+            return valor / 1.24;
+        } else if (medidaInserida === "Euro" && medidaConvertida === "Real") {
+            return valor / 5.46;
+        } else if (medidaInserida === "Euro" && medidaConvertida === "Dolar") {
+            return valor / 1.09;
+        } else if (medidaInserida === "Euro" && medidaConvertida === "Libra") {
+            return valor / 1.14;
+        } else if (medidaInserida === "Libra" && medidaConvertida === "Real") {
+            return valor / 0.16;
+        } else if (medidaInserida === "Libra" && medidaConvertida === "Dolar") {
+            return valor / 0.81;
+        } else if (medidaInserida === "Libra" && medidaConvertida === "Euro") {
+            return valor / 0.88;
         } else {
             return valor;
         }
